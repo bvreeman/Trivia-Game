@@ -1,0 +1,35 @@
+body {
+  background-image: url(../images/patriotic_pattern2.jpg);
+  background-repeat: repeat;
+  background-size: cover;
+}
+header h1 {
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 20px;
+  color: #ffffff;
+  font-weight: bold;
+}
+.us-flag {
+  margin-top: 20px;
+  max-width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.us-flag-2 {
+  margin-top: 20px;
+  max-width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.question_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  margin-top: 20px;
+  background-color: #002868;
+}
