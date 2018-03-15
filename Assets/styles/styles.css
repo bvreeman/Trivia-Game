@@ -25,11 +25,18 @@ header h1 {
   margin-right: auto;
 }
 .question_box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-line-pack: center;
-  align-content: center;
-  margin-top: 20px;
+  margin-top: 40px;
   background-color: #002868;
+  padding-top: 20px;
+}
+.question {
+  color: #ffffff;
+  text-align: center;
+}
+.answer_box {
+  padding-top: 20px;
+}
+.answer {
+  color: #ffffff;
+  text-align: center;
 }

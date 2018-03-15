@@ -51,6 +51,10 @@ testArray.forEach(function(element) {
   console.log(`${element} is super cool!`);
 });
 
+testArray.random(function(element) {
+  console.log(`${element} is super cool, too!`);
+});
+
 //
 //
 //
