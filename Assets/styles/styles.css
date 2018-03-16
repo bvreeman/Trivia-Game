@@ -29,9 +29,17 @@ header h1 {
   background-color: #002868;
   padding-top: 20px;
 }
-.question {
+.question-title {
   color: #ffffff;
   text-align: center;
+}
+.radioButtons {
+  color: #ffffff;
+  padding-bottom: 20px;
+  font-size: 24px;
+}
+.submit {
+  margin-bottom: 20px;
 }
 .answer_box {
   padding-top: 20px;
@@ -39,4 +47,12 @@ header h1 {
 .answer {
   color: #ffffff;
   text-align: center;
+}
+.timer_box {
+  color: #ffffff;
+  text-align: center;
+  font-size: 24px;
+}
+#countdowntimer {
+  font-size: 24px;
 }

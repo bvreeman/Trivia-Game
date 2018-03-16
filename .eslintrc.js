@@ -10,4 +10,5 @@ module.exports = {
     'linebreak-style' : [0],
     'no-empty-lines' : [0],
     'indend' : [0],
+    'prefer-destructuring' : [0],
   }}
