@@ -9,7 +9,7 @@
     <!-- favicon should always be at root of project -->
     <!-- <link rel="icon" type="image/png" href="/somewhere/myicon.png" /> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/styles/styles.css">
+    <link rel="stylesheet" href="./assets/styles/styles.css">
 </head>
 
 <body>
@@ -31,28 +31,32 @@
     </header>
 
     <main>
-        <h2 id="test_status"></h2>
-        <div id="test"></div>
         <div class="containter">
             <div class="row justify-content-center">
-                <div class="col-md-8 col-xs-8 question_box">
-                    <p class="question-title h2"></p>
-                    <hr style="background-color: white">
-                    <div class="row">
-                        <form class="col-md-4 offset-md-2 col-xs-12 form">
-                            <!-- put a container here in order to do .empty on Jquery -->
-                            <div class="radioButtons"></div>
-                            <input class='submit' type='submit' value='Submit' />
-                        </form>
-                        <div class="col-md-4 col-xs-12 timer_box">
-                            <div id="countdownExample">
-                                <div class="values"></div>
+                <div class="col-md-12 col-xs-12">
+                    <div class="row justify-content-center">
+                        <input type="button" value="Start Game" id="startQuiz" onclick="startGame">
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 col-xs-8 question_box">
+                            <p class="question-title h2"></p>
+                            <hr style="background-color: white">
+                            <div class="row">
+                                <form class="col-md-4 offset-md-2 col-xs-12 form">
+                                    <!-- put a container here in order to do .empty on Jquery -->
+                                    <div class="radioButtons"></div>
+                                    <input class='submit' type='submit' value='Submit' />
+                                </form>
+                                <div class="col-md-4 col-xs-12 timer_box">
+                                    <div id="countdownExample">
+                                        <div class="values"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </main>
     <footer></footer>
 

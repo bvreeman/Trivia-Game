@@ -38,6 +38,18 @@ const questionsArr = [
 
 let cnt = 0;
 let nextQuest;
+const playing = false;
+let beginButton;
+
+function startGame() {
+  nextQuest();
+}
+
+$(document).ready(function() {
+  $('#startQuiz').click(function() {
+    startGame();
+  });
+});
 
 $(function() {
   nextQuest = function() {
@@ -48,7 +60,7 @@ $(function() {
       // reset the radio buttons here
     }
   };
-  nextQuest();
+
   $('.submit').click(function(e) {
     e.preventDefault();
     const radios = $('input');
@@ -64,15 +76,15 @@ $(function() {
   });
 });
 
-const timeOutFunction = setInterval(function() {
-  console.log('This is a second interval');
-}, 1000);
+// const timeOutFunction = setInterval(function() {
+//   console.log('This is a second interval');
+// }, 1000);
 
-setTimeout(function() {
-  clearInterval(timeOutFunction);
-}, 5000);
+// setTimeout(function() {
+//   clearInterval(timeOutFunction);
+// }, 5000);
 
-timeOutFunction();
+// timeOutFunction();
 
 // const statesArray = [
 //   ['What is the capital of Alabama?', "Springfield", "Phoenix", "Montgomery", "Richmond"]
