@@ -55,7 +55,7 @@ function startTimer() {
     if (timerTime === 0) {
       stopTimer();
       gameOver();
-    } else if (cnt === 6) {
+    } else if (cnt === questionsArr.length) {
       stopTimer();
       gameOver();
     }
@@ -85,7 +85,6 @@ $(document).ready(function() {
 });
 
 const correctAnswers = 0;
-const wrongAnswers = 0;
 
 $(function() {
   nextQuest = function() {
@@ -103,6 +102,10 @@ $(function() {
     for (let i = 0; i < radios.length; i++) {
       if (radios[i].checked) {
         console.log(radios[i].value);
+        // is here where I need to record my right or wrong answers?
+        function checkAnswers() {
+
+        }
       }
     }
     cnt += 1;
@@ -111,16 +114,9 @@ $(function() {
   });
 });
 
-
-// const timeOutFunction = setInterval(function() {
-//   console.log('This is a second interval');
-// }, 1000);
-
-// setTimeout(function() {
-//   clearInterval(timeOutFunction);
-// }, 5000);
-
-// timeOutFunction();
+// function checkAns(){
+//   if($("input["))
+// }
 
 // const statesArray = [
 //   ['What is the capital of Alabama?', "Springfield", "Phoenix", "Montgomery", "Richmond"]
@@ -199,16 +195,3 @@ $(function() {
 
 // window.addEventListener('load', renderQuestion, false);
 
-// const correct = 0;
-// const incorrect = 0;
-// const playerAnswer = [];
-// const totalSeconds = 10;
-
-// const chosenState = statesArray[Math.floor(Math.random() * statesArray.length)];
-// // document.body.innerHTML = chosenState;
-// console.log(`What is the State Capital of ${chosenState}?`);
-// $('.question').append(`What is the State Capital of ${chosenState}?`);
-
-// // Not sure if this is the way to go, but I'm trying to take chosenState and move it to the doe
-
-// $('.question').append('<div style="color: white">'chosenState()'</\'div>');
