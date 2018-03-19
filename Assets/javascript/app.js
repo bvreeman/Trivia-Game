@@ -38,11 +38,44 @@ const questionsArr = [
 
 let cnt = 0;
 let nextQuest;
-const playing = false;
-let beginButton;
+let timerTime = 60;
+// const playing = false;
+
+function stopTimer() {
+  clearInterval(counter);
+}
+
+function startTimer() {
+  $('.timer').html(`<p>Time Remaining ${timerTime} seconds</p>`);
+  counter = setInterval(runTimer, 1000);
+
+  function runTimer() {
+    timerTime--;
+    $('#timer').html(`<p>Time Remianing: ${timerTime} seconds</p>`);
+    if (timerTime === 0) {
+      stopTimer();
+      gameOver();
+    } else if (cnt === 6) {
+      stopTimer();
+      gameOver();
+    }
+  }
+}
 
 function startGame() {
+  $('.radioButtons').empty();
   nextQuest();
+  startTimer();
+}
+
+let hidden = false;
+function action() {
+  hidden = !hidden;
+  if (hidden) {
+    document.getElementById('startQuiz').style.visibility = 'hidden';
+  } else {
+    document.getElementById('startQuiz').style.visibility = 'visible';
+  }
 }
 
 $(document).ready(function() {
@@ -50,6 +83,9 @@ $(document).ready(function() {
     startGame();
   });
 });
+
+const correctAnswers = 0;
+const wrongAnswers = 0;
 
 $(function() {
   nextQuest = function() {
@@ -69,12 +105,12 @@ $(function() {
         console.log(radios[i].value);
       }
     }
-
     cnt += 1;
     $('.radioButtons').empty();
     nextQuest();
   });
 });
+
 
 // const timeOutFunction = setInterval(function() {
 //   console.log('This is a second interval');
