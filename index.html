@@ -38,14 +38,17 @@
                         <input type="button" value="Start Game" id="startQuiz" onClick="startGame; action();">
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-md-8 col-xs-8 question_box">
+                        <input type="button" value="Restart Game" id="restartQuiz" onClick="restartGame; action();">
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 col-xs-8 question_box" id="quiz">
                             <p class="question-title h2"></p>
                             <hr style="background-color: white">
-                            <div class="row">
+                            <div class="row justify-content-center">
                                 <form class="col-md-4 offset-md-2 col-xs-12 form">
                                     <!-- put a container here in order to do .empty on Jquery -->
                                     <div class="radioButtons" type="radio" name="group"></div>
-                                    <input class='submit' type='submit' value='Submit'/>
+                                    <input class='submit' id='submit' type='submit' value='Submit' />
                                 </form>
                                 <div class="col-md-4 col-xs-12 timer_box">
                                     <div class="row">

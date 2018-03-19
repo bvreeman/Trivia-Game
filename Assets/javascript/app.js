@@ -38,8 +38,12 @@ const questionsArr = [
 
 let cnt = 0;
 let nextQuest;
-let timerTime = 60;
+let timerTime = 10;
 // const playing = false;
+
+function gameOver() {
+  console.log('thanks for playing');
+}
 
 function stopTimer() {
   clearInterval(counter);
@@ -68,23 +72,48 @@ function startGame() {
   startTimer();
 }
 
-let hidden = false;
-function action() {
-  hidden = !hidden;
-  if (hidden) {
-    document.getElementById('startQuiz').style.visibility = 'hidden';
-  } else {
-    document.getElementById('startQuiz').style.visibility = 'visible';
-  }
-}
-
 $(document).ready(function() {
   $('#startQuiz').click(function() {
     startGame();
   });
 });
 
-const correctAnswers = 0;
+function restartGame() {
+  clearInterval(counter);
+  timerTime = 10;
+  cnt = 0;
+  startGame();
+}
+
+$(document).ready(function() {
+  $('#restartQuiz').click(function() {
+    restartGame();
+  });
+});
+
+$(function() {
+  $('#restartQuiz').hide();
+});
+
+$(document).ready(function() {
+  $('#startQuiz').click(function() {
+    $('#restartQuiz').show();
+    $('#startQuiz').hide();
+  });
+});
+
+// let hidden = false;
+// function action() {
+//   hidden = !hidden;
+//   if (hidden) {
+//     document.getElementById('startQuiz').style.visibility = 'hidden';
+//   } else {
+//     document.getElementById('startQuiz').style.visibility = 'visible';
+//   }
+//   $('#startQuiz').click(function() {
+//     $('#restartQuiz').show();
+//   });
+// }
 
 $(function() {
   nextQuest = function() {
@@ -92,7 +121,9 @@ $(function() {
     const answers = questionsArr[cnt].answers;
     for (let i = 0; i < answers.length; i++) {
       $('.radioButtons').prepend(`<input type='radio' name='choices' value=${i} />${answers[i]}<br/>`);
-      // reset the radio buttons here
+      if (cnt === questionsArr.length) {
+        gameOver();
+      }
     }
   };
 
@@ -103,9 +134,7 @@ $(function() {
       if (radios[i].checked) {
         console.log(radios[i].value);
         // is here where I need to record my right or wrong answers?
-        function checkAnswers() {
-
-        }
+        // answersArray();
       }
     }
     cnt += 1;
@@ -113,6 +142,40 @@ $(function() {
     nextQuest();
   });
 });
+
+
+// const inputs = document.getElementsByTagName('input');
+
+// function answersArray() {
+//   const guessedAnswers = [];
+//   const correctAnswers = [0, 3, 0, 1, 3, 2];
+
+//   const length = Math.min(guessedAnswers.length, correctAnswers.length);
+//   for (i = 0; i < inputs.length; i++) {
+//     if (inputs[i].checked) {
+//       guessedAnswers.push(inputs[i].value);
+//     }
+//   }
+//   let correctCount = 0;
+//   const incorrectCount = 0;
+//   for (i = 0; i < guessedAnswers.length; i++) {
+//     if (guessedAnswers[i] === correctAnswers[i]) {
+//       correctCount++;
+//     }
+//   }
+//   console.log(correctCount);
+// }
+
+
+// const quizContainer = document.getElementById('quiz');
+// const resultsContainer = document.getElementById('results');
+// const submitButton = document.getElementById('submit');
+
+// function showResults(){
+//   const answerContainers = quizContainer.querySelectorAll('.answers');
+//   let correctAnswers = 0;
+//   questionsArr.forEach( ())
+// }
 
 // function checkAns(){
 //   if($("input["))
