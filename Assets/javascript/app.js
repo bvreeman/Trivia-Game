@@ -11,37 +11,37 @@ const questionsArr = [
   {
     question: 'What is the capital of Alabama?',
     answers: ['Montgomery', 'Phoenix', 'Richmond', 'Springfield'],
-    correct: 0,
+    correct: 'Montgomery',
   },
 
   {
     question: 'What is the capital of North Carolina?',
     answers: ['Clinton', 'Jacksonville', 'Greensboro', 'Raleigh'],
-    correct: 3,
+    correct: 'Raleigh',
   },
 
   {
     question: 'What is the capital of Alaska?',
     answers: ['Juneau', 'Olympia', 'Little Rock', 'Austin'],
-    correct: 0,
+    correct: 'Juneau',
   },
 
   {
     question: 'What is the capital of Arkansas?',
     answers: ['Columbia', 'Little Rock', 'Harrisburg', 'Atlanta'],
-    correct: 1,
+    correct: 'Little Rock',
   },
 
   {
     question: 'What is the capital of Arizona?',
     answers: ['Charleston', 'Montpelier', 'St. Paul', 'Phoenix'],
-    correct: 3,
+    correct: 'Phoenix',
   },
 
   {
     question: 'What is the capital of Minnesota?',
     answers: ['Santa Fe', 'Bismark', 'St. Paul', 'Lansing'],
-    correct: 2,
+    correct: 'St. Paul',
   },
 ];
 
@@ -57,10 +57,17 @@ let cnt = 0;
 let nextQuest;
 let timerTime = 60;
 let score = 0;
-const correctAnswers = [0, 3, 0, 1, 0, 2];
-// const playing = false;
+const correctAnswers = ['Montgomery', 'Raleigh', 'Juneau', 'Little Rock', 'Phoenix', 'St. Pauls'];
+let guessedAnswers = [];
+
+// Because I wasn't figuring out how to compare the two arrays, I used this
+// to show the answers at the end.
+// It's not working 100% because I need to figure out how to change the position
+// value from guessedAnswers.push(radios[i].value); into words.
 
 function gameOver() {
+  document.getElementById('results').innerHTML = (`Your answers were ${guessedAnswers}.`);
+  document.getElementById('correct').innerHTML = (`Correct answers were ${correctAnswers.join(', ')}.`);
   console.log('thanks for playing');
 }
 
@@ -103,6 +110,7 @@ function restartGame() {
   cnt = 0;
   score = 0;
   startGame();
+  guessedAnswers = [];
 }
 
 $(document).ready(function() {
@@ -122,6 +130,7 @@ $(document).ready(function() {
   });
 });
 
+// An attempt at seeing if the two arrays are equal
 
 // function answersArray() {
 //   const correctAnswers = [0, 3, 0, 1, 3, 2];
@@ -139,20 +148,20 @@ $(document).ready(function() {
 //   }
 // }
 
-const guessedAnswers = [];
+// This was another attempt at seeing if they were equal
 
-function arraysEqual() {
-  if (correctAnswers.length === guessedAnswers.length) {
-    score++;
-  }
-  for (let i = correctAnswers.length; i--;) {
-    if (correctAnswers[i] === guessedAnswers[i]) {
-      score++;
-    }
-  }
+// function arraysEqual() {
+//   if (correctAnswers.length === guessedAnswers.length) {
+//     score++;
+//   }
+//   for (let i = correctAnswers.length; i--;) {
+//     if (correctAnswers[i] === guessedAnswers[i]) {
+//       score++;
+//     }
+//   }
 
-  return true;
-}
+//   return true;
+// }
 
 $(function() {
   nextQuest = function() {
@@ -171,12 +180,12 @@ $(function() {
     const radios = $('input');
     for (let i = 0; i < radios.length; i++) {
       if (radios[i].checked) {
+        // This is where I'm pushing which radiobutton was checked into guessedAnswers array
         guessedAnswers.push(radios[i].value);
-        arraysEqual();
       }
     }
     console.log(guessedAnswers);
-    console.log(arraysEqual());
+    // console.log(arraysEqual());
     console.log(score);
     cnt += 1;
     $('.radioButtons').empty();
@@ -184,11 +193,32 @@ $(function() {
   });
 });
 
-function equalArrays() {
-  if (cnt === 6) {
+// if (guessedAnswers[] === 0) {
+//   score++;
+// } if (guessedAnswers[1] === 3) {
+//   score++;
+// } if (guessedAnswers[2] === 0) {
+//   score++;
+// } if (guessedAnswers[3] === 1) {
+//   score++;
+// } if (guessedAnswers[4] === 0) {
+//   score++;
+// } if (guessedAnswers[5] === 2) {
+//   score++;
+// }
+// checkInputs();
+// arraysEqual();
 
-  }
-}
+// function checkInputs() {
+
+// }
+
+// function equalArrays() {
+//   if (cnt === questionsArr.length) {
+//     then checkInputs();
+
+//     }
+//   }
 
 // const inputs = document.getElementsByTagName('input');
 
