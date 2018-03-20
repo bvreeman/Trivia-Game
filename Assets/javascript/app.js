@@ -12,33 +12,52 @@ const questionsArr = [
     question: 'What is the capital of Alabama?',
     answers: ['Montgomery', 'Phoenix', 'Richmond', 'Springfield'],
     correct: 0,
-  }, {
+  },
+
+  {
     question: 'What is the capital of North Carolina?',
     answers: ['Clinton', 'Jacksonville', 'Greensboro', 'Raleigh'],
     correct: 3,
-  }, {
+  },
+
+  {
     question: 'What is the capital of Alaska?',
     answers: ['Juneau', 'Olympia', 'Little Rock', 'Austin'],
     correct: 0,
-  }, {
+  },
+
+  {
     question: 'What is the capital of Arkansas?',
     answers: ['Columbia', 'Little Rock', 'Harrisburg', 'Atlanta'],
     correct: 1,
-  }, {
+  },
+
+  {
     question: 'What is the capital of Arizona?',
     answers: ['Charleston', 'Montpelier', 'St. Paul', 'Phoenix'],
     correct: 3,
-  }, {
+  },
+
+  {
     question: 'What is the capital of Minnesota?',
     answers: ['Santa Fe', 'Bismark', 'St. Paul', 'Lansing'],
     correct: 2,
   },
 ];
 
+// console.log(questionsArr[0].correct);
+// console.log(questionsArr[1].correct);
+// console.log(questionsArr[2].correct);
+// console.log(questionsArr[3].correct);
+// console.log(questionsArr[4].correct);
+// console.log(questionsArr[5].correct);
+
 
 let cnt = 0;
 let nextQuest;
-let timerTime = 10;
+let timerTime = 60;
+let score = 0;
+const correctAnswers = [0, 3, 0, 1, 0, 2];
 // const playing = false;
 
 function gameOver() {
@@ -80,8 +99,9 @@ $(document).ready(function() {
 
 function restartGame() {
   clearInterval(counter);
-  timerTime = 10;
+  timerTime = 60;
   cnt = 0;
+  score = 0;
   startGame();
 }
 
@@ -102,18 +122,37 @@ $(document).ready(function() {
   });
 });
 
-// let hidden = false;
-// function action() {
-//   hidden = !hidden;
-//   if (hidden) {
-//     document.getElementById('startQuiz').style.visibility = 'hidden';
-//   } else {
-//     document.getElementById('startQuiz').style.visibility = 'visible';
+
+// function answersArray() {
+//   const correctAnswers = [0, 3, 0, 1, 3, 2];
+
+//   const length = Math.min(guessedAnswers.length, correctAnswers.length);
+//   for (i = 0; i < inputs.length; i++) {
+//     if (inputs[i].checked) {
+//       guessedAnswers.push(inputs[i].value);
+//     }
 //   }
-//   $('#startQuiz').click(function() {
-//     $('#restartQuiz').show();
-//   });
+//   for (i = 0; i < guessedAnswers.length; i++) {
+//     if (guessedAnswers[i] === correctAnswers[i]) {
+//       score++;
+//     }
+//   }
 // }
+
+const guessedAnswers = [];
+
+function arraysEqual() {
+  if (correctAnswers.length === guessedAnswers.length) {
+    score++;
+  }
+  for (let i = correctAnswers.length; i--;) {
+    if (correctAnswers[i] === guessedAnswers[i]) {
+      score++;
+    }
+  }
+
+  return true;
+}
 
 $(function() {
   nextQuest = function() {
@@ -132,40 +171,26 @@ $(function() {
     const radios = $('input');
     for (let i = 0; i < radios.length; i++) {
       if (radios[i].checked) {
-        console.log(radios[i].value);
-        // is here where I need to record my right or wrong answers?
-        // answersArray();
+        guessedAnswers.push(radios[i].value);
+        arraysEqual();
       }
     }
+    console.log(guessedAnswers);
+    console.log(arraysEqual());
+    console.log(score);
     cnt += 1;
     $('.radioButtons').empty();
     nextQuest();
   });
 });
 
+function equalArrays() {
+  if (cnt === 6) {
+
+  }
+}
 
 // const inputs = document.getElementsByTagName('input');
-
-// function answersArray() {
-//   const guessedAnswers = [];
-//   const correctAnswers = [0, 3, 0, 1, 3, 2];
-
-//   const length = Math.min(guessedAnswers.length, correctAnswers.length);
-//   for (i = 0; i < inputs.length; i++) {
-//     if (inputs[i].checked) {
-//       guessedAnswers.push(inputs[i].value);
-//     }
-//   }
-//   let correctCount = 0;
-//   const incorrectCount = 0;
-//   for (i = 0; i < guessedAnswers.length; i++) {
-//     if (guessedAnswers[i] === correctAnswers[i]) {
-//       correctCount++;
-//     }
-//   }
-//   console.log(correctCount);
-// }
-
 
 // const quizContainer = document.getElementById('quiz');
 // const resultsContainer = document.getElementById('results');
