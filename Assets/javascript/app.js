@@ -45,30 +45,35 @@ const questionsArr = [
   },
 ];
 
-// console.log(questionsArr[0].correct);
-// console.log(questionsArr[1].correct);
-// console.log(questionsArr[2].correct);
-// console.log(questionsArr[3].correct);
-// console.log(questionsArr[4].correct);
-// console.log(questionsArr[5].correct);
-
-
 let cnt = 0;
 let nextQuest;
-let timerTime = 60;
+let timerTime = 30;
 let score = 0;
-const correctAnswers = ['Montgomery', 'Raleigh', 'Juneau', 'Little Rock', 'Phoenix', 'St. Pauls'];
+// const correctAnswers = ['Montgomery = 0', 'Raleigh = 3', 'Juneau = 0', 'Little Rock = 1', 'Phoenix = 3', 'St. Paul = 2'];
+const correctAnswers = [0, 3, 0, 1, 3, 2];
 let guessedAnswers = [];
 
-// Because I wasn't figuring out how to compare the two arrays, I used this
-// to show the answers at the end.
-// It's not working 100% because I need to figure out how to change the position
-// value from guessedAnswers.push(radios[i].value); into words.
+// Game Over function
+function hideContent() {
+  $('.radioButtons').hide();
+  $('#submit').hide();
+  $('#timer').hide();
+  $('.question-title').hide();
+}
 
 function gameOver() {
-  document.getElementById('results').innerHTML = (`Your answers were ${guessedAnswers}.`);
-  document.getElementById('correct').innerHTML = (`Correct answers were ${correctAnswers.join(', ')}.`);
+  hideContent();
+  checkInputs();
+  document.getElementById('results').innerHTML = (`You got ${score} out of 6 right!`);
+
   console.log('thanks for playing');
+}
+
+// sets up the gameOver function if time reaches zero.
+function timeOut() {
+  hideContent();
+  checkInputs();
+  document.getElementById('results').innerHTML = (`You ran out of time. You got ${score} out of 6 right!`);
 }
 
 // Timer functions
@@ -86,7 +91,7 @@ function startTimer() {
     $('#timer').html(`<p>Time Remianing: ${timerTime} seconds</p>`);
     if (timerTime === 0) {
       stopTimer();
-      gameOver();
+      timeOut();
     } else if (cnt === questionsArr.length) {
       stopTimer();
       gameOver();
@@ -110,11 +115,16 @@ $(document).ready(function() {
 // Reset function
 function restartGame() {
   clearInterval(counter);
-  timerTime = 60;
+  timerTime = 30;
   cnt = 0;
   score = 0;
   startGame();
   guessedAnswers = [];
+  $('#results').empty();
+  $('.radioButtons').show();
+  $('#submit').show();
+  $('#timer').show();
+  $('.question_box').show();
 }
 
 // Resets the game once clicking the Restart Game button
@@ -127,6 +137,7 @@ $(document).ready(function() {
 // Hides the Restart Game button at the start of the game
 $(function() {
   $('#restartQuiz').hide();
+  $('#submit').hide();
 });
 
 // Makes the Start Game button disappear once clicked and the Restart Game button appear
@@ -134,41 +145,26 @@ $(document).ready(function() {
   $('#startQuiz').click(function() {
     $('#restartQuiz').show();
     $('#startQuiz').hide();
+    $('#submit').show();
   });
 });
 
-// An attempt at seeing if the two arrays are equal
-
-// function answersArray() {
-//   const correctAnswers = [0, 3, 0, 1, 3, 2];
-
-//   const length = Math.min(guessedAnswers.length, correctAnswers.length);
-//   for (i = 0; i < inputs.length; i++) {
-//     if (inputs[i].checked) {
-//       guessedAnswers.push(inputs[i].value);
-//     }
-//   }
-//   for (i = 0; i < guessedAnswers.length; i++) {
-//     if (guessedAnswers[i] === correctAnswers[i]) {
-//       score++;
-//     }
-//   }
-// }
-
-// This was another attempt at seeing if they were equal
-
-// function arraysEqual() {
-//   if (correctAnswers.length === guessedAnswers.length) {
-//     score++;
-//   }
-//   for (let i = correctAnswers.length; i--;) {
-//     if (correctAnswers[i] === guessedAnswers[i]) {
-//       score++;
-//     }
-//   }
-
-//   return true;
-// }
+// Checks through my answers and reports a score through the checkInputs function
+function checkInputs() {
+  if (guessedAnswers[0] == correctAnswers[0]) {
+    score++;
+  } if (guessedAnswers[1] == correctAnswers[1]) {
+    score++;
+  } if (guessedAnswers[2] == correctAnswers[2]) {
+    score++;
+  } if (guessedAnswers[3] == correctAnswers[3]) {
+    score++;
+  } if (guessedAnswers[4] == correctAnswers[4]) {
+    score++;
+  } if (guessedAnswers[5] == correctAnswers[5]) {
+    score++;
+  }
+}
 
 // Sets up the flow of the game. Makes a question appear after the previous was submitted
 $(function() {
@@ -192,10 +188,6 @@ $(function() {
         guessedAnswers.push(radios[i].value);
       }
     }
-    console.log(guessedAnswers);
-    // console.log(arraysEqual());
-    console.log(score);
-
     // adds to counter to determine the end of the game.
     cnt += 1;
     // empties the radio buttons so the answers don't compile
@@ -203,51 +195,6 @@ $(function() {
     nextQuest();
   });
 });
-
-// Another attempt at tracking scores.
-
-// if (guessedAnswers[] === 0) {
-//   score++;
-// } if (guessedAnswers[1] === 3) {
-//   score++;
-// } if (guessedAnswers[2] === 0) {
-//   score++;
-// } if (guessedAnswers[3] === 1) {
-//   score++;
-// } if (guessedAnswers[4] === 0) {
-//   score++;
-// } if (guessedAnswers[5] === 2) {
-//   score++;
-// }
-// checkInputs();
-// arraysEqual();
-
-// function checkInputs() {
-
-// }
-
-// function equalArrays() {
-//   if (cnt === questionsArr.length) {
-//     then checkInputs();
-
-//     }
-//   }
-
-// const inputs = document.getElementsByTagName('input');
-
-// const quizContainer = document.getElementById('quiz');
-// const resultsContainer = document.getElementById('results');
-// const submitButton = document.getElementById('submit');
-
-// function showResults(){
-//   const answerContainers = quizContainer.querySelectorAll('.answers');
-//   let correctAnswers = 0;
-//   questionsArr.forEach( ())
-// }
-
-// function checkAns(){
-//   if($("input["))
-// }
 
 // const statesArray = [
 //   ['What is the capital of Alabama?', "Springfield", "Phoenix", "Montgomery", "Richmond"]
@@ -323,6 +270,3 @@ $(function() {
 //   'Salem', 'Harrisburg', 'Providence', 'Columbia',
 //   'Pierre', 'Nashville', 'Austin', 'Salt Lake City', 'Montpelier', 'Richmond',
 //   'Olympia', 'Charleston', 'Madison', 'Cheyenne'];
-
-// window.addEventListener('load', renderQuestion, false);
-
