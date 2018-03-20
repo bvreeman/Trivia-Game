@@ -71,6 +71,8 @@ function gameOver() {
   console.log('thanks for playing');
 }
 
+// Timer functions
+
 function stopTimer() {
   clearInterval(counter);
 }
@@ -92,18 +94,20 @@ function startTimer() {
   }
 }
 
+// Function to get the gameboard set and start the timer
 function startGame() {
   $('.radioButtons').empty();
   nextQuest();
   startTimer();
 }
-
+// Starts the game on the click of the Start Game button
 $(document).ready(function() {
   $('#startQuiz').click(function() {
     startGame();
   });
 });
 
+// Reset function
 function restartGame() {
   clearInterval(counter);
   timerTime = 60;
@@ -113,16 +117,19 @@ function restartGame() {
   guessedAnswers = [];
 }
 
+// Resets the game once clicking the Restart Game button
 $(document).ready(function() {
   $('#restartQuiz').click(function() {
     restartGame();
   });
 });
 
+// Hides the Restart Game button at the start of the game
 $(function() {
   $('#restartQuiz').hide();
 });
 
+// Makes the Start Game button disappear once clicked and the Restart Game button appear
 $(document).ready(function() {
   $('#startQuiz').click(function() {
     $('#restartQuiz').show();
@@ -163,6 +170,7 @@ $(document).ready(function() {
 //   return true;
 // }
 
+// Sets up the flow of the game. Makes a question appear after the previous was submitted
 $(function() {
   nextQuest = function() {
     $('.question-title').text(questionsArr[cnt].question);
@@ -174,7 +182,7 @@ $(function() {
       }
     }
   };
-
+  // Records an answer after submit button is clicked.
   $('.submit').click(function(e) {
     e.preventDefault();
     const radios = $('input');
@@ -187,11 +195,16 @@ $(function() {
     console.log(guessedAnswers);
     // console.log(arraysEqual());
     console.log(score);
+
+    // adds to counter to determine the end of the game.
     cnt += 1;
+    // empties the radio buttons so the answers don't compile
     $('.radioButtons').empty();
     nextQuest();
   });
 });
+
+// Another attempt at tracking scores.
 
 // if (guessedAnswers[] === 0) {
 //   score++;
